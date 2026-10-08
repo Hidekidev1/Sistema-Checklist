@@ -1,4 +1,7 @@
 'use client';
+
+// Corrigido para resolver erros de tipos em ambiente sem dependências instaladas.
+
 import { useState, useEffect } from 'react';
 import CardVeiculo, { Veiculo } from '@/components/CardVeiculo';
 import { mockVeiculos } from '@/data/mockVeiculos';

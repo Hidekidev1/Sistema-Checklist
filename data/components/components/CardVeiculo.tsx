@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import * as React from 'react';
 
 export interface Veiculo {
   id: string;
@@ -17,29 +17,54 @@ export default function CardVeiculo({ veiculo }: { veiculo: Veiculo }) {
     Pendente: 'bg-yellow-100 text-yellow-800 border-yellow-400',
   }[veiculo.status];
 
-  return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex flex-col justify-between">
-      <div>
-        <div className="flex justify-between items-start mb-2">
-          <div>
-            <h2 className="text-lg font-bold text-slate-800">{veiculo.placa}</h2>
-            <p className="text-xs text-slate-500">{veiculo.modelo}</p>
-          </div>
-          <span className={`px-2 py-0.5 text-xs font-semibold rounded-full border ${badgeColor}`}>
-            {veiculo.status}
-          </span>
-        </div>
-        <div className="text-xs text-slate-600 space-y-1 mb-4">
-          <p><strong className="text-slate-700">Motorista:</strong> {veiculo.motorista}</p>
-          <p><strong className="text-slate-700">Última Revisão:</strong> {veiculo.ultimaRevisao}</p>
-        </div>
-      </div>
-      <Link
-        href={`/checklist/${veiculo.id}`}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 text-sm font-semibold rounded-lg transition-colors"
-      >
-        Iniciar Checklist
-      </Link>
-    </div>
+  return React.createElement(
+    'div',
+    { className: 'bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex flex-col justify-between' },
+    React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'div',
+        { className: 'flex justify-between items-start mb-2' },
+        React.createElement(
+          'div',
+          null,
+          React.createElement('h2', { className: 'text-lg font-bold text-slate-800' }, veiculo.placa),
+          React.createElement('p', { className: 'text-xs text-slate-500' }, veiculo.modelo),
+        ),
+        React.createElement(
+          'span',
+          { className: `px-2 py-0.5 text-xs font-semibold rounded-full border ${badgeColor}` },
+          veiculo.status,
+        ),
+      ),
+      React.createElement(
+        'div',
+        { className: 'text-xs text-slate-600 space-y-1 mb-4' },
+        React.createElement(
+          'p',
+          null,
+          React.createElement('strong', { className: 'text-slate-700' }, 'Motorista:'),
+          ' ',
+          veiculo.motorista,
+        ),
+        React.createElement(
+          'p',
+          null,
+          React.createElement('strong', { className: 'text-slate-700' }, 'Última Revisão:'),
+          ' ',
+          veiculo.ultimaRevisao,
+        ),
+      ),
+    ),
+    React.createElement(
+      'a',
+      {
+        href: `/checklist/${veiculo.id}`,
+        className:
+          'w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 text-sm font-semibold rounded-lg transition-colors block',
+      },
+      'Iniciar Checklist',
+    ),
   );
 }
